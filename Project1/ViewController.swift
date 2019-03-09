@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UITableViewController {
+    var picture = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         let fm = FileManager.default
@@ -18,11 +18,21 @@ class ViewController: UIViewController {
         
         for item in items {
             if item.hasPrefix("nssl") {
-                print(item)
+                picture.append(item)
             }
         }
+        print(picture)
     }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return picture.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath)
+        cell.textLabel?.text = picture[indexPath.row]
+        return cell
+    }
 
 }
 
