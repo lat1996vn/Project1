@@ -24,6 +24,7 @@ class ViewController: UITableViewController {
                 picture.append(item)
             }
         }
+        picture.sort()
         print(picture)
     }
 
